@@ -33,7 +33,14 @@ type DHCPResponse struct {
 }
 
 func getDHCPResponse(api url.URL, key string) (response *DHCPResponse) {
-	var info *DHCPResponse
+	var info *DHCPResponse = &DHCPResponse{
+		Packet: nil,
+		MsgType: dhcp.NAK,
+		Server: nil,
+		ClientIP: nil,
+		LeaseDuration: 0,
+		Options: nil,
+	}
 
 	apistring := api.String()
 
