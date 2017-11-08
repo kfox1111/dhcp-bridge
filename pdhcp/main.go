@@ -105,6 +105,12 @@ func (han *DHCPHandler) ServeDHCP(req dhcp.Packet, msg dhcp.MessageType, reqopts
 		return nil
 	}
 
+	//FIXME is this really the right packet to return?
+	reply.Packet = req
+        if reply.Server == nil {
+		reply.Server = han.srv
+	}
+
 	return dhcp.ReplyPacket(reply.Packet,
 		reply.MsgType,
 		reply.Server,
